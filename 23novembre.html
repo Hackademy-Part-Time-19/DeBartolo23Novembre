@@ -7,62 +7,81 @@
 </head>
 <body>
     <script>
+        let lista = []
 
-        let lista = null;
-        let operazione;
+        function stampaLista() {
+            let stringaDaStampare = "La lista è ora \n"
+                lista.forEach(element => {
+                    stringaDaStampare += "-" + element + "\n"
+                });
+                alert (stringaDaStampare)
+        }
+
+        let operazione = parseInt(prompt("Buonasera, benvenuto nell'app Listaa.\n\nPremi 1 per aggiungere un prodotto\n\nPremi 2 per eliminare un prodotto\n\nPremi 3 per ordinare la lista in ordine alfabetico\n\nPremi 4 per modificare un elemento\n\nPremi 5 per eliminare tutta la lista\n\nPremi 6 per visualizzare la lista\n\nPremi 0 per uscire"))
     while (operazione!=0){
 
-        
-        let operazione = parseInt(prompt("Buonasera, benvenuto nell'app Listaa.\n\nPremi 1 per aggiungere un prodotto\n\nPremi 2 per eliminare un prodotto\n\nPremi 3 per ordinare la lista in ordine alfabetico\n\nPremi 4 per modificare un elemento\n\nPremi 5 per eliminare tutta la lista\n\nPremi 6 per visualizzare la lista\n\nPremi 0 per uscire"))
+    
 
         switch (operazione) {
             case 1:
-                let prodotto = parseInt(prompt("Inserisci il prodotto da aggiungere "))
-                lista.push("prodotto")
+                let prodotto = prompt("Inserisci il prodotto da aggiungere ")
+                lista.push(prodotto)
+                alert ("Hai aggiunto " + prodotto + " alla lista")
+    
+                stampaLista ()
+
+                break;
 
             case 2:
 
-                let prodottoEliminare = parseInt(prompt("Inserisci il prodotto da eliminare "))
-                lista.pop()
-
+                let prodottoEliminare = prompt("Inserisci il prodotto da eliminare ")
+                let indiceDaRimuovere = lista.indexOf(prodottoEliminare)
+                if (indiceDaRimuovere != -1) {
+                    lista.splice(indiceDaRimuovere, 1)
+                    alert("Hai rimosso " + prodottoEliminare + " dalla lista")
+                    stampaLista()
+                } else {
+                    alert("L'elemento che hai inserito non è presente nella lista")
+                } 
                 break;
 
             case 3:
 
-                let listaNome = lista.sort((a, b) => {
-                    if (a.nome < b.nome) {
-                    return -1;
-                    }
-                    if (a.nome > b.nome) {
-                    return 1;
-                    }
-  
-                    return 0;
-                });
-                alert("La lista ordinata è" + listaNome)
+                lista.sort()
+            
+                alert("Ho ordinato la lista in maniera alfabetica")
+                stampaLista()
                 break;    
             case 4:
-
+                let elementoDaModificare = prompt("Inserisci l'elemento da modificare")
+                let indiceElementoDaModificare = lista.indexOf(elementoDaModificare)
+                if (indiceElementoDaModificare != -1) {
+                    let nuovoElemento = prompt("Inserisci il nuovo elemento")
+                    lista[indiceElementoDaModificare] = nuovoElemento
+                    alert("Ho modificato l'elemento " + elementoDaModificare + " con " + nuovoElemento)
+                    stampaLista()
+                } else {
+                    alert("L'elemento che hai inserito non è presente nella lista")
+                }
                 
                 break;
             case 5:
 
-                lista = null
+                lista = []
             case 6:
 
-                alert("La lista è " + lista)
+               stampaLista()
                 
 
                 break;
             case 0:
 
                 alert("Operazione terminata")
-                
-            default:
-                alert("L'operazione non è supportata")
-                break;
+            
         }
+        operazione = parseInt(prompt("Buonasera, benvenuto nell'app Listaa.\n\nPremi 1 per aggiungere un prodotto\n\nPremi 2 per eliminare un prodotto\n\nPremi 3 per ordinare la lista in ordine alfabetico\n\nPremi 4 per modificare un elemento\n\nPremi 5 per eliminare tutta la lista\n\nPremi 6 per visualizzare la lista\n\nPremi 0 per uscire"))    
     }
+    
     </script>
 </body>
 </html>
